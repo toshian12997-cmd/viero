@@ -1,11 +1,38 @@
-const intro=document.getElementById('intro');const auth=document.getElementById('auth');const app=document.getElementById('app');const toast=document.getElementById('toast');const modal=document.getElementById('modal');const modalTitle=document.getElementById('modalTitle');const modalOverline=document.getElementById('modalOverline');const modalBody=document.getElementById('modalBody');let introTimer;
+const intro=document.getElementById('intro');
+const auth=document.getElementById('auth');
+const app=document.getElementById('app');
+const toast=document.getElementById('toast');
+const modal=document.getElementById('modal');
+const modalTitle=document.getElementById('modalTitle');
+const modalOverline=document.getElementById('modalOverline');
+const modalBody=document.getElementById('modalBody');
+let introTimer;
+let phaseTimers=[];
+
 function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove('show'),2800)}
-function enterLogin(){clearTimeout(introTimer);intro.classList.add('hidden');auth.classList.remove('hidden');document.body.classList.add('auth-active')}
+function clearIntroPhases(){phaseTimers.forEach(clearTimeout);phaseTimers=[];clearTimeout(introTimer)}
+function enterLogin(skip=false){clearIntroPhases();if(skip){intro.classList.add('exit');setTimeout(()=>{intro.classList.add('hidden');auth.classList.remove('hidden');document.body.classList.add('auth-active')},450);return}intro.classList.add('exit');setTimeout(()=>{intro.classList.add('hidden');auth.classList.remove('hidden');document.body.classList.add('auth-active')},650)}
+function runIntro(){
+  clearIntroPhases();
+  let walker=document.querySelector('.walker');
+  const wordmark=document.querySelector('.intro-wordmark');
+  const copy=document.querySelector('.intro-copy');
+  let light=document.querySelector('.briefcase-light');
+  if(!light){light=document.createElement('span');light.className='briefcase-light';intro.appendChild(light)}
+  intro.classList.remove('exit','flash-on');
+  walker.classList.remove('briefcase-open');wordmark.classList.remove('on');copy.classList.remove('on');
+  phaseTimers.push(setTimeout(()=>walker.classList.add('briefcase-open'),7900));
+  phaseTimers.push(setTimeout(()=>intro.classList.add('flash-on'),9600));
+  phaseTimers.push(setTimeout(()=>{wordmark.classList.add('on');copy.classList.add('on')},10800));
+  introTimer=setTimeout(()=>enterLogin(),17000);
+}
 function enterApp(){auth.classList.add('hidden');app.classList.remove('hidden');document.body.classList.remove('auth-active');showToast('Welcome to your VIERO workspace.')}
 function openModal(overline,title,body){modalOverline.textContent=overline;modalTitle.textContent=title;modalBody.innerHTML=body;modal.classList.remove('hidden');document.body.style.overflow='hidden'}
 function closeModal(){modal.classList.add('hidden');document.body.style.overflow=''}
 function row(title,text,tag=''){return `<div class="intel-row"><strong>${title}</strong><span>${text}</span>${tag?`<div class="confidence-label">${tag}</div>`:''}</div>`}
-introTimer=setTimeout(enterLogin,15500);document.getElementById('skipIntro').addEventListener('click',enterLogin);
+
+runIntro();
+document.getElementById('skipIntro').addEventListener('click',()=>enterLogin(true));
 document.getElementById('togglePassword').addEventListener('click',()=>{const input=document.getElementById('password');const button=document.getElementById('togglePassword');input.type=input.type==='password'?'text':'password';button.textContent=input.type==='password'?'Show':'Hide'});
 document.getElementById('loginForm').addEventListener('submit',event=>{event.preventDefault();enterApp()});
 document.getElementById('createAccount').addEventListener('click',()=>showToast('Business account setup will connect to secure authentication.'));
@@ -20,5 +47,6 @@ document.getElementById('searchBtn').addEventListener('click',()=>showToast('Sea
 document.getElementById('periodSelect').addEventListener('change',event=>showToast(`${event.target.value} view selected. Add real data to populate momentum.`));
 document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>showToast(`${button.textContent.trim()} will open when the business workspace is connected.`)));
 document.querySelectorAll('[data-open]').forEach(button=>button.addEventListener('click',()=>{const type=button.dataset.open;if(type==='decision')openModal('DECISION ROOM','Make a decision with evidence',`<p class="modal-note">VIERO Decision Room is designed to structure a real business decision around evidence, options, risks, assumptions and expected outcomes.</p><div class="modal-content-grid" style="margin-top:15px">${row('Situation','Define the decision that needs to be made.')} ${row('Evidence','Separate recorded facts from assumptions.')} ${row('Options','Compare realistic courses of action.')} ${row('What-If','Test how assumptions could affect the business.')} ${row('Decision Memory','Save the expected outcome so VIERO can later compare it with reality.')}</div><button class="modal-action" data-close>Close</button>`);else openModal('VIERO AI','Ask the business',`<p class="modal-note">VIERO AI should answer using authorized business information and clearly distinguish facts, analysis, forecasts and recommendations.</p><div class="intel-row" style="margin-top:15px"><strong>Try asking:</strong><span>Why did sales change? What is my biggest bottleneck? What information am I missing? What should I investigate?</span></div><button class="modal-action" data-close>Close</button>`)}));
-modal.addEventListener('click',event=>{if(event.target.closest('[data-close]'))closeModal()});document.addEventListener('keydown',event=>{if(event.key==='Escape')closeModal()});
-window.addEventListener('load',()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){clearTimeout(introTimer);setTimeout(enterLogin,500)}});
+modal.addEventListener('click',event=>{if(event.target.closest('[data-close]'))closeModal()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeModal()});
+window.addEventListener('load',()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){clearIntroPhases();intro.classList.add('hidden');auth.classList.remove('hidden')}});
