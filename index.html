@@ -15,24 +15,14 @@
     <div class="intro-noise"></div>
     <div class="v-gate" aria-hidden="true"><span class="v-mark"></span><span class="v-dot"></span></div>
     <div class="floor-line"></div>
-    <div class="walker" aria-hidden="true">
-      <div class="head"></div><div class="neck"></div><div class="body"></div>
-      <div class="arm arm-left"></div><div class="arm arm-right"></div>
-      <div class="leg leg-left"></div><div class="leg leg-right"></div>
-      <div class="briefcase"></div>
-    </div>
+    <div class="walker" aria-hidden="true"><div class="head"></div><div class="neck"></div><div class="body"></div><div class="arm arm-left"></div><div class="arm arm-right"></div><div class="leg leg-left"></div><div class="leg leg-right"></div><div class="briefcase"></div></div>
     <div class="briefcase-flash" aria-hidden="true"></div>
     <div class="intro-wordmark"><span class="logo-v">V</span><i></i><strong>IERO</strong></div>
     <div class="intro-copy">BUSINESS INTELLIGENCE • DECISION • ACTION</div>
     <button id="skipIntro" class="skip">Skip intro</button>
   </div>
-
   <main id="auth" class="auth hidden">
-    <div class="auth-image" id="authImage">
-      <div class="image-overlay"></div>
-      <div class="image-progress"><span></span></div>
-      <div class="business-caption"><span>VIERO</span><p>Understand the business behind the numbers.</p><small>Built for the decisions that move a business forward.</small></div>
-    </div>
+    <div class="auth-image" id="authImage"><div class="image-overlay"></div><div class="image-progress"><span></span></div><div class="business-caption"><span>VIERO</span><p>Understand the business behind the numbers.</p><small>Built for the decisions that move a business forward.</small></div></div>
     <section class="auth-panel">
       <div class="brand"><span class="brand-v"></span><span class="brand-dot"></span><strong>VIERO</strong></div>
       <p class="eyebrow">VALUE, ENTERPRISE, YIELD &amp; REVENUE OPTIMIZATION</p>
@@ -40,91 +30,32 @@
       <p class="auth-copy">A business command centre for understanding performance, finding constraints and making better decisions.</p>
       <form id="loginForm">
         <label>Email or phone<input required type="text" placeholder="you@business.com" /></label>
-        <label>Password><div class="password"><input required id="password" type="password" placeholder="Enter your password" /><button type="button" id="togglePassword">Show</button></div></label>
+        <label>Password<div class="password"><input required id="password" type="password" placeholder="Enter your password" /><button type="button" id="togglePassword">Show</button></div></label>
         <div class="form-row"><label class="remember"><input type="checkbox" /> Remember me</label><a href="#" id="forgotPassword">Forgot password?</a></div>
         <button class="primary" type="submit">Sign in <span>→</span></button>
       </form>
-      <div class="divider"><span>New to VIERO?</span></div>
-      <button class="secondary" id="createAccount">Create business account</button>
-      <p class="legal">By continuing, you agree to VIERO's Terms and Privacy Policy.</p>
+      <div class="divider"><span>New to VIERO?</span></div><button class="secondary" id="createAccount">Create business account</button><p class="legal">By continuing, you agree to VIERO's Terms and Privacy Policy.</p>
     </section>
   </main>
-
   <section id="app" class="app hidden">
-    <aside class="sidebar">
-      <div class="side-brand"><span class="brand-v"></span><span class="brand-dot"></span><strong>VIERO</strong></div>
-      <nav>
-        <a class="active" href="#pulse">Overview</a><a href="#sales">Sales</a><a href="#customers">Customers</a><a href="#inventory">Inventory</a><a href="#invoices">Invoices</a><a href="#reports">Reports</a><a href="#decisions">Decision Room</a><a href="#ai">VIERO AI</a>
-      </nav>
-      <div class="side-bottom"><a href="#settings">Settings</a><button id="logout">Sign out</button></div>
-    </aside>
-
+    <aside class="sidebar"><div class="side-brand"><span class="brand-v"></span><span class="brand-dot"></span><strong>VIERO</strong></div><nav><a class="active" href="#pulse">Overview</a><a href="#sales">Sales</a><a href="#customers">Customers</a><a href="#inventory">Inventory</a><a href="#invoices">Invoices</a><a href="#reports">Reports</a><a href="#decisions">Decision Room</a><a href="#ai">VIERO AI</a></nav><div class="side-bottom"><a href="#settings">Settings</a><button id="logout">Sign out</button></div></aside>
     <div class="content">
-      <header class="topbar">
-        <div><p class="overline">BUSINESS PULSE</p><h2>Good morning.</h2><span class="workspace-label">Your workspace is ready for real business data.</span></div>
-        <div class="top-actions"><button class="icon-btn" id="searchBtn" aria-label="Search">⌕</button><button class="avatar" aria-label="Profile">V</button></div>
-      </header>
-
+      <header class="topbar"><div><p class="overline">BUSINESS PULSE</p><h2>Good morning.</h2><span class="workspace-label">Your workspace is ready for real business data.</span></div><div class="top-actions"><button class="icon-btn" id="searchBtn" aria-label="Search">⌕</button><button class="avatar" aria-label="Profile">V</button></div></header>
       <div class="empty-banner"><div><strong>Start with your real business.</strong><span>VIERO does not invent activity. Add or import your first records to unlock intelligence.</span></div><button id="addData">Add your first data →</button></div>
-
       <section class="hero-grid">
-        <article class="momentum panel">
-          <div class="panel-head"><div><p class="overline">BUSINESS MOMENTUM</p><h3>Build your picture</h3></div><select id="periodSelect"><option>30 days</option><option>90 days</option><option>1 year</option></select></div>
-          <div class="chart-empty">
-            <div class="chart-gridlines"><span></span><span></span><span></span><span></span></div>
-            <div class="chart-line"><i></i><i></i><i></i><i></i><i></i></div>
-            <p>No trend yet</p><small>Record sales and expenses to unlock momentum.</small>
-          </div>
-        </article>
-        <article class="watch panel">
-          <div class="panel-head"><div><p class="overline">VIERO WATCH</p><h3>Nothing to flag</h3></div><span class="status-dot"></span></div>
-          <p class="muted">VIERO will monitor meaningful changes once your business data is connected.</p>
-          <div class="watch-rule"><span>WATCH</span><span>EXPLAIN</span><span>ACT</span></div>
-          <button class="text-btn" id="learnWatch">How VIERO Watch works →</button>
-        </article>
+        <article class="momentum panel"><div class="panel-head"><div><p class="overline">BUSINESS MOMENTUM</p><h3>Build your picture</h3></div><select id="periodSelect"><option>30 days</option><option>90 days</option><option>1 year</option></select></div><div class="chart-empty"><div class="chart-gridlines"><span></span><span></span><span></span><span></span></div><div class="chart-line"><i></i><i></i><i></i><i></i><i></i></div><p>No trend yet</p><small>Record sales and expenses to unlock momentum.</small></div></article>
+        <article class="watch panel"><div class="panel-head"><div><p class="overline">VIERO WATCH</p><h3>Nothing to flag</h3></div><span class="status-dot"></span></div><p class="muted">VIERO will monitor meaningful changes once your business data is connected.</p><div class="watch-rule"><span>WATCH</span><span>EXPLAIN</span><span>ACT</span></div><button class="text-btn" id="learnWatch">How VIERO Watch works →</button></article>
       </section>
-
       <section class="intel-grid">
-        <article class="intel bottleneck">
-          <span class="feature-icon">!</span><p class="overline">FIND THE BOTTLENECK</p><h3>Discover what is holding the business back.</h3>
-          <p>VIERO ranks constraints by business impact instead of overwhelming you with unrelated warnings.</p>
-          <button class="outline" id="bottleneckBtn">Analyze bottlenecks</button>
-        </article>
-        <article class="intel confidence">
-          <span class="feature-icon">✓</span><p class="overline">CONFIDENCE CALIBRATION</p><h3>Know how much to trust an insight.</h3>
-          <p>Facts, analysis, estimates and forecasts stay clearly separated. Confidence rises with stronger evidence.</p>
-          <div class="confidence-meter"><span style="width:0%"></span></div><small>Insufficient data</small>
-          <button class="mini-link" id="confidenceBtn">See confidence rules →</button>
-        </article>
-        <article class="intel missing">
-          <span class="feature-icon">⌁</span><p class="overline">MISSING INFORMATION</p><h3>Find gaps before they become bad decisions.</h3>
-          <p>VIERO detects incomplete or outdated information and tells you exactly why it matters.</p>
-          <button class="outline" id="missingBtn">Check information</button>
-        </article>
+        <article class="intel bottleneck"><span class="feature-icon">!</span><p class="overline">FIND THE BOTTLENECK</p><h3>Discover what is holding the business back.</h3><p>VIERO ranks constraints by business impact instead of overwhelming you with unrelated warnings.</p><button class="outline" id="bottleneckBtn">Analyze bottlenecks</button></article>
+        <article class="intel confidence"><span class="feature-icon">✓</span><p class="overline">CONFIDENCE CALIBRATION</p><h3>Know how much to trust an insight.</h3><p>Facts, analysis, estimates and forecasts stay clearly separated. Confidence rises with stronger evidence.</p><div class="confidence-meter"><span style="width:0%"></span></div><small>Insufficient data</small><button class="mini-link" id="confidenceBtn">See confidence rules →</button></article>
+        <article class="intel missing"><span class="feature-icon">⌁</span><p class="overline">MISSING INFORMATION</p><h3>Find gaps before they become bad decisions.</h3><p>VIERO detects incomplete or outdated information and tells you exactly why it matters.</p><button class="outline" id="missingBtn">Check information</button></article>
       </section>
-
-      <section class="lower-grid">
-        <article class="panel review"><p class="overline">WHAT CHANGED</p><h3>Nothing to explain yet.</h3><p>Once real activity is recorded, VIERO will explain meaningful changes instead of simply showing numbers.</p><div class="flow"><span>DATA</span><b>→</b><span>UNDERSTAND</span><b>→</b><span>DECIDE</span><b>→</b><span>ACT</span></div></article>
-        <article class="panel quick"><p class="overline">QUICK ACTIONS</p><button data-action="sale">＋ Record sale</button><button data-action="invoice">＋ Create invoice</button><button data-action="customer">＋ Add customer</button><button data-action="product">＋ Add product</button></article>
-      </section>
-
-      <section class="command-grid">
-        <article class="command panel" id="decisions"><div><p class="overline">DECISION ROOM</p><h3>Turn evidence into a decision.</h3><p>Compare options, test scenarios, record assumptions and later measure whether the decision worked.</p></div><button class="dark-action" data-open="decision">Enter Decision Room →</button></article>
-        <article class="command panel" id="ai"><div><p class="overline">VIERO AI</p><h3>Ask the business, not a generic chatbot.</h3><p>Ask why something changed, what deserves attention, or what evidence supports an insight.</p></div><button class="pink-action" data-open="ai">Ask VIERO →</button></article>
-      </section>
+      <section class="lower-grid"><article class="panel review"><p class="overline">WHAT CHANGED</p><h3>Nothing to explain yet.</h3><p>Once real activity is recorded, VIERO will explain meaningful changes instead of simply showing numbers.</p><div class="flow"><span>DATA</span><b>→</b><span>UNDERSTAND</span><b>→</b><span>DECIDE</span><b>→</b><span>ACT</span></div></article><article class="panel quick"><p class="overline">QUICK ACTIONS</p><button data-action="sale">＋ Record sale</button><button data-action="invoice">＋ Create invoice</button><button data-action="customer">＋ Add customer</button><button data-action="product">＋ Add product</button></article></section>
+      <section class="command-grid"><article class="command panel" id="decisions"><div><p class="overline">DECISION ROOM</p><h3>Turn evidence into a decision.</h3><p>Compare options, test scenarios, record assumptions and later measure whether the decision worked.</p></div><button class="dark-action" data-open="decision">Enter Decision Room →</button></article><article class="command panel" id="ai"><div><p class="overline">VIERO AI</p><h3>Ask the business, not a generic chatbot.</h3><p>Ask why something changed, what deserves attention, or what evidence supports an insight.</p></div><button class="pink-action" data-open="ai">Ask VIERO →</button></article></section>
     </div>
   </section>
-
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-card">
-      <button class="modal-close" data-close aria-label="Close">×</button>
-      <p class="overline" id="modalOverline">VIERO INTELLIGENCE</p>
-      <h2 id="modalTitle">Analysis</h2>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-backdrop" data-close></div><div class="modal-card"><button class="modal-close" data-close aria-label="Close">×</button><p class="overline" id="modalOverline">VIERO INTELLIGENCE</p><h2 id="modalTitle">Analysis</h2><div id="modalBody"></div></div></div>
   <div id="toast" class="toast"></div>
   <script src="script.js"></script>
 </body>
