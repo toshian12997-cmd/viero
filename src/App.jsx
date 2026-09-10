@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Bell, BriefcaseBusiness, Check, ChevronRight, Database, FileText, LayoutDashboard, LogOut, Menu, Package, Search, Settings, ShoppingCart, Sparkles, Users, WalletCards, X } from 'lucide-react';
+import { ArrowRight, Bell, BriefcaseBusiness, Check, ChevronRight, Database, Eye, EyeOff, FileText, LayoutDashboard, Lock, LogOut, Mail, Menu, Package, Search, Settings, ShoppingCart, Sparkles, Users, WalletCards, X } from 'lucide-react';
 
 const navItems = [['Overview', LayoutDashboard], ['Sales', ShoppingCart], ['Customers', Users], ['Inventory', Package], ['Invoices', FileText], ['Reports', WalletCards], ['Decision Room', BriefcaseBusiness], ['VIERO AI', Sparkles]];
 function Logo({ small = false }) { return <div className={`logo ${small ? 'small' : ''}`}><span className="logo-v">V</span><span className="logo-dot"/><b>IERO</b></div>; }
@@ -11,7 +11,86 @@ function Intro({ onDone }) {
 }
 function Auth({ onLogin }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  return <main className="auth"><div className="auth-image"><div className="image-shade"/><div className="image-caption"><span>VIERO</span><h2>Understand the business behind the numbers.</h2><p>Built for the decisions that move a business forward.</p></div></div><section className="auth-panel"><Logo/><span className="eyebrow">VALUE, ENTERPRISE, YIELD &amp; REVENUE OPTIMIZATION</span><h1>Know your business.<br/><strong>Decide with confidence.</strong></h1><p className="auth-copy">A business command centre for understanding performance, finding constraints and making better decisions.</p><form onSubmit={e => { e.preventDefault(); onLogin(); }}><label>Email or phone<input required type="text" placeholder="you@business.com"/></label><label>Password<div className="password"><input required type={passwordVisible ? 'text' : 'password'} placeholder="Enter your password"/><button type="button" onClick={() => setPasswordVisible(v => !v)}>{passwordVisible ? 'Hide' : 'Show'}</button></div></label><div className="form-row"><label className="remember"><input type="checkbox"/> Remember me</label><button type="button" className="link">Forgot password?</button></div><button className="primary">Sign in <ArrowRight size={17}/></button></form><div className="divider">New to VIERO?</div><button className="secondary" type="button">Create business account</button><p className="legal">By continuing, you agree to VIERO's Terms and Privacy Policy.</p></section></main>;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false);
+  const [slide, setSlide] = useState(0);
+  const backgrounds = [
+    'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1800&q=90',
+    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=90',
+    'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=90'
+  ];
+  useEffect(() => { const timer = setInterval(() => setSlide(v => (v + 1) % backgrounds.length), 6500); return () => clearInterval(timer); }, []);
+  return <main className="auth rocket-login">
+    <style>{`
+      .rocket-login{min-height:100vh;display:grid;grid-template-columns:minmax(390px,38%) minmax(0,62%);background:#fff;color:#182033;overflow:hidden}
+      .rocket-login .auth-panel{order:1;width:auto;max-width:none;padding:42px clamp(42px,6vw,92px);display:flex;flex-direction:column;justify-content:center;background:#fff;overflow:auto}
+      .rocket-login .auth-panel>.logo{margin-bottom:74px;color:#172033;letter-spacing:.01em}
+      .rocket-login .logo-v{color:#e9368f;font-size:34px;transform:rotate(-3deg)}
+      .rocket-login .logo-dot{background:#e9368f;width:6px;height:6px;margin-top:10px;margin-left:2px;margin-right:8px}
+      .rocket-login .auth-panel>.eyebrow{display:none}
+      .rocket-login .auth-panel h1{font-family:'DM Sans',Arial,sans-serif;font-size:clamp(34px,3.2vw,48px);line-height:1.05;letter-spacing:-.04em;color:#172033;margin:0 0 10px;font-weight:700}
+      .rocket-login .auth-panel h1 strong{display:none}
+      .rocket-login .auth-copy{font-size:14px;line-height:1.5;color:#8b94a5;margin:0 0 38px}
+      .rocket-login form{display:grid;gap:22px;max-width:480px}
+      .rocket-login .auth-panel label{display:grid;gap:8px;color:#303949;font-size:13px;font-weight:500}
+      .rocket-login .auth-panel input[type=text],.rocket-login .auth-panel input[type=password]{width:100%;height:44px;padding:0 42px 0 39px;border:1px solid #dfe4ec;background:#f8f9fb;color:#172033;border-radius:10px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+      .rocket-login .auth-panel input[type=text]:focus,.rocket-login .auth-panel input[type=password]:focus{background:#fff;border-color:#e9368f;box-shadow:0 0 0 3px rgba(233,54,143,.09)}
+      .rocket-login .auth-panel input::placeholder{color:#a6aebb}
+      .rocket-login .field-wrap{position:relative}
+      .rocket-login .field-wrap>svg{position:absolute;left:13px;top:13px;color:#8993a4;pointer-events:none}
+      .rocket-login .password button{position:absolute;right:7px;top:5px;background:transparent;border:0;color:#7c8698;padding:7px;display:grid;place-items:center}
+      .rocket-login .form-row{display:flex;justify-content:space-between;align-items:center;margin-top:-4px}
+      .rocket-login .remember{display:flex!important;grid-template-columns:none!important;align-items:center;gap:8px!important;font-size:12px!important;color:#687386!important}
+      .rocket-login .remember input{width:16px;height:16px;margin:0;accent-color:#e9368f}
+      .rocket-login .link{border:0;background:transparent;color:#e9368f;font-size:12px;padding:0;font-weight:500}
+      .rocket-login .primary{height:45px;border:0;background:#e9368f;color:#fff;border-radius:10px;padding:0 17px;font-weight:700;display:flex;justify-content:center;align-items:center;gap:10px;box-shadow:0 8px 20px rgba(233,54,143,.18);transition:transform .2s,box-shadow .2s,filter .2s}
+      .rocket-login .primary:hover{transform:translateY(-1px);box-shadow:0 11px 26px rgba(233,54,143,.24);filter:saturate(1.04)}
+      .rocket-login .primary:active{transform:translateY(0)}
+      .rocket-login .divider{max-width:480px;text-align:center;color:#a0a8b5;font-size:11px;border-top:1px solid #e8ebf0;margin:31px 0 18px;padding-top:0;position:relative}
+      .rocket-login .divider:after{content:'OR';position:absolute;left:50%;top:0;transform:translate(-50%,-50%);background:#fff;padding:0 12px;color:#a2aab6}
+      .rocket-login .secondary{max-width:480px;height:45px;border:1px solid #dfe4ec;background:#fff;color:#293244;border-radius:10px;padding:0 17px;font-weight:600;transition:border-color .2s,background .2s}
+      .rocket-login .secondary:hover{border-color:#c9d0db;background:#fafbfc}
+      .rocket-login .legal{max-width:480px;text-align:center;color:#a0a8b5;font-size:10px;line-height:1.5;margin-top:17px}
+      .rocket-login .auth-image{order:2;position:relative;min-height:100vh;background:#e9e0d6;overflow:hidden}
+      .rocket-login .auth-photo{position:absolute;inset:0;background-position:center;background-size:cover;opacity:0;transition:opacity 1.25s ease;transform:scale(1.02)}
+      .rocket-login .auth-photo.active{opacity:1}
+      .rocket-login .image-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,13,24,.06),rgba(8,13,24,.15)),linear-gradient(180deg,rgba(8,13,24,.04),rgba(8,13,24,.28));z-index:2}
+      .rocket-login .image-brand{position:absolute;right:34px;top:32px;z-index:3;display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;font-size:13px;text-shadow:0 1px 8px rgba(0,0,0,.18)}
+      .rocket-login .image-brand .mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(10px);font-family:'Space Grotesk',sans-serif;font-weight:700}
+      .rocket-login .image-caption{position:absolute;left:42px;bottom:38px;max-width:410px;z-index:3;color:#fff;text-shadow:0 2px 15px rgba(0,0,0,.28)}
+      .rocket-login .image-caption span{color:#fff;font-size:10px;letter-spacing:.2em;font-weight:700}
+      .rocket-login .image-caption h2{font-family:'Space Grotesk',sans-serif;font-size:30px;line-height:1.08;margin:10px 0 7px;font-weight:600}
+      .rocket-login .image-caption p{font-size:12px;color:rgba(255,255,255,.84);margin:0;line-height:1.5}
+      .rocket-login .image-dots{position:absolute;left:42px;bottom:20px;z-index:4;display:flex;gap:5px}
+      .rocket-login .image-dots button{width:5px;height:5px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.45);transition:all .25s}
+      .rocket-login .image-dots button.active{width:17px;border-radius:5px;background:#fff}
+      @media(max-width:850px){.rocket-login{grid-template-columns:1fr}.rocket-login .auth-image{display:none}.rocket-login .auth-panel{padding:34px 24px;justify-content:flex-start}.rocket-login .auth-panel>.logo{margin-bottom:70px}.rocket-login form,.rocket-login .divider,.rocket-login .secondary,.rocket-login .legal{max-width:none}.rocket-login .auth-panel h1{font-size:38px}}
+      @media(min-width:851px) and (max-height:760px){.rocket-login .auth-panel{padding-top:28px;padding-bottom:28px}.rocket-login .auth-panel>.logo{margin-bottom:35px}.rocket-login .auth-copy{margin-bottom:24px}.rocket-login form{gap:15px}.rocket-login .divider{margin:22px 0 14px}.rocket-login .legal{margin-top:12px}}
+    `}</style>
+    <section className="auth-panel">
+      <Logo/>
+      <span className="eyebrow">Veyro business intelligence</span>
+      <h1>Welcome back</h1>
+      <p className="auth-copy">Sign in to your Veyro workspace</p>
+      <form onSubmit={e => { e.preventDefault(); onLogin(); }}>
+        <label>Email address<div className="field-wrap"><Mail size={17}/><input required type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@yourbusiness.com" autoComplete="email"/></div></label>
+        <label>Password<div className="password field-wrap"><Lock size={17}/><input required type={passwordVisible ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} placeholder="Your password" autoComplete="current-password"/><button type="button" aria-label={passwordVisible ? 'Hide password' : 'Show password'} onClick={() => setPasswordVisible(v => !v)}>{passwordVisible ? <EyeOff size={17}/> : <Eye size={17}/>}</button></div></label>
+        <div className="form-row"><label className="remember"><input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)}/> Keep me signed in for 30 days</label><button type="button" className="link">Forgot password?</button></div>
+        <button className="primary">Sign in <ArrowRight size={17}/></button>
+      </form>
+      <div className="divider">OR</div>
+      <button className="secondary" type="button">Continue with Google</button>
+      <p className="legal">By continuing, you agree to Veyro's Terms of Service and Privacy Policy.</p>
+    </section>
+    <section className="auth-image">
+      {backgrounds.map((url, i) => <div key={url} className={`auth-photo ${i === slide ? 'active' : ''}`} style={{ backgroundImage: `url(${url})` }}/>) }
+      <div className="image-shade"/>
+      <div className="image-brand"><span className="mark">V</span><span>Veyro</span></div>
+      <div className="image-caption"><span>BUSINESS INTELLIGENCE</span><h2>Understand your business.<br/>Decide with confidence.</h2><p>Built for the decisions that move a business forward.</p></div>
+      <div className="image-dots">{backgrounds.map((_, i) => <button key={i} className={i === slide ? 'active' : ''} aria-label={`Show business image ${i + 1}`} onClick={() => setSlide(i)}/>)}</div>
+    </section>
+  </main>;
 }
 function Dashboard({ logout }) {
   const [modal, setModal] = useState(null); const [menuOpen, setMenuOpen] = useState(false); const open = (label, title, body) => setModal({ label, title, body });
